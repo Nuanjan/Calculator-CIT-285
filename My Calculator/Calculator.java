@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 public class Calculator {
 
 	JFrame frame;
-	private JTextField textStart;
+	private JTextField textDisplay;
 
 	/**
 	 * Launch the application.
@@ -49,12 +49,12 @@ public class Calculator {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textStart = new JTextField();
-		textStart.setBounds(0, 0, 204, 140);
-		textStart.setForeground(new Color(255, 255, 204));
-		textStart.setBackground(SystemColor.inactiveCaptionText);
-		frame.getContentPane().add(textStart);
-		textStart.setColumns(10);
+		textDisplay = new JTextField();
+		textDisplay.setBounds(0, 0, 204, 140);
+		textDisplay.setForeground(new Color(255, 255, 204));
+		textDisplay.setBackground(SystemColor.inactiveCaptionText);
+		frame.getContentPane().add(textDisplay);
+		textDisplay.setColumns(10);
 		
 		JButton btnBack = new JButton("\u2B38");
 		btnBack.addActionListener(new ActionListener() {
@@ -67,6 +67,8 @@ public class Calculator {
 		JButton btnClear = new JButton("C");
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 			}
 		});
 		btnClear.setBounds(53, 142, 50, 50);
@@ -85,6 +87,13 @@ public class Calculator {
 		frame.getContentPane().add(btn2);
 		
 		JButton btn7 = new JButton("7");
+		btn7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String enterNum = textDisplay.getText()+btn7.getText();
+				textDisplay.setText(enterNum);
+				
+			}
+		});
 		btn7.setBounds(2, 192, 50, 50);
 		frame.getContentPane().add(btn7);
 		
