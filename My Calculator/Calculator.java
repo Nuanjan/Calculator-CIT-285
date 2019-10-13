@@ -15,34 +15,20 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
+import javax.swing.text.JTextComponent;
 
 public class Calculator extends Factorial {
 
 	JFrame frame;
 double firstNum,secNum,result;
 String answer,operation;
+
 private JTextField textDisplay;
 
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Calculator window = new Calculator();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
+
 	public Calculator() {
 		initialize();
 	}
@@ -56,11 +42,13 @@ private JTextField textDisplay;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		
 		JButton btnBack = new JButton("<<");
 		btnBack.setFont(new Font("Tahoma", Font.BOLD, 10));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String backspace=null;
+				
 				if(textDisplay.getText().length()>0) {
 					StringBuilder strB = new StringBuilder(textDisplay.getText());
 					strB.deleteCharAt(textDisplay.getText().length()-1);
@@ -76,7 +64,7 @@ private JTextField textDisplay;
 		btnClear.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textDisplay.setText(null);
+				textDisplay.setText("");
 				
 				
 			}
@@ -271,18 +259,18 @@ private JTextField textDisplay;
 				
 				result=firstNum-secNum;
 				answer = String.format("%.2f", result);
-				textDisplay.setText(answer);
+				textDisplay.setText(firstNum+"-"+secNum+"="+answer);
 				
 			} else if(operation=="x") {
 				
 				result=firstNum*secNum;
 				answer = String.format("%.2f", result);
-				textDisplay.setText(answer);
+				textDisplay.setText(firstNum+"x"+secNum+"="+answer);
 			} else if(operation=="%") {
 				
 				result=firstNum%secNum;
 				answer = String.format("%.2f", result);
-				textDisplay.setText(answer);
+				textDisplay.setText(firstNum+"%"+secNum+"="+answer);
 			} else if(operation=="\u00f7") {
 				
 				result=firstNum/secNum;
@@ -351,10 +339,9 @@ private JTextField textDisplay;
 		frame.getContentPane().add(btnDivide);
 		
 		textDisplay = new JTextField();
-		textDisplay.setBackground(SystemColor.inactiveCaptionText);
-		textDisplay.setForeground(new Color(255, 250, 250));
-		textDisplay.setBounds(2, 0, 204, 144);
+		textDisplay.setBounds(2, 0, 202, 143);
 		frame.getContentPane().add(textDisplay);
 		textDisplay.setColumns(10);
 	}
 }
+
